@@ -1,0 +1,18 @@
+{
+  "name": "lab01-playwright",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:trace": "playwright test --trace on",
+    "test:trace-demo": "playwright test --config=playwright.trace-demo.config.ts",
+    "report": "playwright show-report",
+    "report:evidence": "playwright show-report evidence/passing-report",
+    "codegen": "playwright codegen https://www.saucedemo.com"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6"
+  }
+}
