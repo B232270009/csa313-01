@@ -52,7 +52,8 @@ test('бараа сагсанд нэмэх', async ({ page }) => {
   await expect(item).toHaveCount(1);
   await expect(item.getByTestId('inventory-item-name')).toHaveText('Sauce Labs Backpack');
   await expect(item.getByTestId('item-quantity')).toHaveText('1');
-  // Демо өгөгдлийг цэвэрлэж, badge арилсныг батална.
+  // Устгасны дараа сагсны мөр болон badge хоёул арилсныг шалгана.
   await item.getByRole('button', { name: 'Remove', exact: true }).click();
+  await expect(item).toHaveCount(0);
   await expect(page.getByTestId('shopping-cart-badge')).toHaveCount(0);
 });
