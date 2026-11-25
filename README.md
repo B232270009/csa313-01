@@ -64,16 +64,15 @@ npm run report:evidence
 
 `experiments/trace-demo.spec.ts` нь нэвтэрсний дараах бодит Products гарчгийг зориудаар Wrong title гэж шалгана. Үндсэн тестүүдээс тусдаа тохиргоотой:
 
-```powershell
-npm.cmd run test:trace-demo
-npx.cmd playwright show-report evidence/trace-demo-report
+```bash
+npm run test:trace-demo
+npx playwright show-report playwright-trace-demo-report
 ```
 
-Энэ команд **1 failed**, exit code **1** буцаах нь туршилтын зорьсон үр дүн. Алдаа нь toHaveText дээр expected Wrong title, received Products, timeout 2000ms гэж гарсан. Assertion унасан ч finally хэсэгт logout хийдэг. Үүссэн trace-ийг локал Trace viewer-д нээж, сонгогдсон алдаатай алхам, Products гэсэн DOM snapshot, дараах logout алхмуудыг шалгав. Тайлангийн тестийг нээгээд trace холбоосоор орж болно. Эсвэл PowerShell дээр:
+Туршилтын хүлээгдэж буй үр дүн нь **1 failed**, exit code **1**. Хадгалсан тайлангийн `toHaveText` алдаанд хүлээсэн `Wrong title`, бодит `Products` утга болон 2000 мс хүлээлт харагдана. Assertion унасан ч `finally` хэсэгт logout хийнэ. Тайлангаас trace-ийг нээж алдаатай алхам, `Products` DOM snapshot болон дараах logout алхмуудыг үзэж болно. Git-д хадгалсан тайланг тусад нь нээх команд:
 
-```powershell
-$traceFile = (Get-ChildItem evidence/trace-demo-report/data -Filter *.zip | Select-Object -First 1).FullName
-npx.cmd playwright show-trace "$traceFile"
+```bash
+npx playwright show-report evidence/trace-demo-report
 ```
 
 ## Codegen турших
