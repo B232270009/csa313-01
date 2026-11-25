@@ -4,24 +4,26 @@
 
 ## Ажиллуулах
 
-Node.js 18 буюу түүнээс дээш хувилбар, интернэт холболт хэрэгтэй. Туршсан хувилбар: Node.js 26.13.0, Playwright 1.65.1.
+Node.js 20 буюу түүнээс дээш хувилбар болон SauceDemo-д хандах интернэт холболт хэрэгтэй. Репозиторийг клон хийсэн эсвэл workspace доторх `lab01` хавтсыг нээсэн бол `package.json` байгаа хавтаснаас дараах командуудыг ажиллуулна.
 
-```powershell
-cd Lab1/my-first-test
-npm.cmd ci
-npx.cmd playwright install
-npm.cmd test
-npm.cmd run report
+```bash
+npm ci
+npx playwright install --with-deps
+npx playwright test
+npx playwright show-report
 ```
 
-Одоогийн workspace-д dependency, хөтчүүд суусан тул шууд `npm.cmd test` ажиллуулна. Тохиргоо нь `../../.tools/playwright-browsers` хавтсыг байвал автоматаар сонгоно. Өөр компьютерт Playwright-ийн ердийн browser cache ашиглана. PowerShell дээр npm.ps1 execution policy-д хаагдаж болох учраас `.cmd` командыг хэрэглэв. Linux/macOS дээр `npm`, `npx` гэж ажиллуулна.
+Ubuntu дээр `--with-deps` нь хөтчүүдэд шаардлагатай системийн сангуудыг суулгана. macOS дээр `npx playwright install` командыг ашиглана. PowerShell дээр скрипт ажиллуулах бодлого саад болбол `npm.cmd`, `npx.cmd` гэж дуудна.
 
 Зөвхөн үндсэн тест эсвэл нэг хөтчийг сонгох:
 
-```powershell
-npx.cmd playwright test tests/mytest.spec.ts
-npx.cmd playwright test --project=chromium
+```bash
+npx playwright test tests/mytest.spec.ts
+npx playwright test --project=chromium
+npx playwright test tests/setup.spec.ts
 ```
+
+`tests/setup.spec.ts` нь SauceDemo-д холбогдохгүйгээр суулгасан хөтчүүдийг шалгана.
 
 ## Бичсэн тестүүд
 
@@ -52,8 +54,8 @@ npx.cmd playwright test --project=chromium
 
 Эцсийн ажиллуулалт **13.2 секунд** үргэлжилсэн. Хугацаа нь интернэт болон компьютероос хамаарч өөрчлөгдөнө. Git-д хавсаргасан HTML тайлан болон trace файлууд `evidence/passing-report/` дотор бий:
 
-```powershell
-npm.cmd run report:evidence
+```bash
+npm run report:evidence
 ```
 
 Эхний ажиллуулалтад Logout-ийг link гэж сонгосноос тестийн цэвэрлэгээ timeout болсон. Page snapshot дээр Logout нь button байсныг харж getByRole('button', { name: 'Logout', exact: true }) болгон зассаны дараа гурван хөтөч дээр бүгд тэнцсэн. Энэ нь хуучин жишээний locator-ийг шууд хэрэглэхээс өмнө бодит хуудастай тулгах хэрэгтэйг харуулсан.
@@ -76,8 +78,8 @@ npx.cmd playwright show-trace "$traceFile"
 
 ## Codegen турших
 
-```powershell
-npm.cmd run codegen
+```bash
+npm run codegen
 ```
 
 Codegen болон Playwright Inspector цонхыг эхлүүлсэн боловч энэ удаагийн desktop удирдлагын хэрэгсэл цонхны handle алдаа өгсөн тул үйлдэл бичүүлж, үүссэн кодыг харьцуулах алхам дуусаагүй. Дахин туршихдаа Username, Password бөглөж Login дарсны дараа гарч буй кодыг tests/mytest.spec.ts-тай харьцуулна. Assertion, сөрөг хувилбар, logout, давтагдах алхмууд байгаа эсэхийг шалгах хэрэгтэй.
