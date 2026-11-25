@@ -33,7 +33,7 @@ npx playwright test tests/setup.spec.ts
 | Буруу нууц үг | standard_user / wrong_password | Алдааны бүтэн мессеж, login URL хэвээр, inventory нээгдэхгүй |
 | Бараа сагслах | Backpack нэмээд сагсыг нээх | Badge 1, /cart.html URL, нэг мөр, зөв нэр, тоо хэмжээ 1 |
 
-Сагсны тестийн төгсгөлд барааг устгаж badge арилсныг шалгасан. Нэвтэрсэн тест бүрийн afterEach хэсэгт цэсийг нээгээд Logout дарж, login хуудас руу буцсаныг батална. Буруу нууц үгийн тестэд session үүсэхгүй тул login хуудсанд үлдсэнийг шалгана. Playwright тест бүрд шинэ browser context үүсгэдэг тул session болон localStorage хуваалцахгүй. Нэг тестийг тусад нь ажиллуулахад өмнөх тест шаардлагагүй.
+Сагсны тестийн төгсгөлд барааг устгаад сагсны мөр болон badge арилсныг шалгасан. Нэвтэрсэн тест бүрийн afterEach хэсэгт цэсийг нээгээд Logout дарж, login хуудас руу буцсаныг батална. Буруу нууц үгийн тестэд session үүсэхгүй тул login хуудсанд үлдсэнийг шалгана. Playwright тест бүрд шинэ browser context үүсгэдэг тул session болон localStorage хуваалцахгүй. Нэг тестийг тусад нь ажиллуулахад өмнөх тест шаардлагагүй.
 
 ## Locator болон assertion сонголт
 
@@ -43,7 +43,7 @@ npx playwright test tests/setup.spec.ts
 
 ## Үр дүн ба нотолгоо
 
-2026-11-18-нд бодит https://www.saucedemo.com дээр ажиллуулсан эцсийн үр дүн:
+2026-11-25-нд `95d27c8` commit-ийн цэвэр хуулбарт Node.js 20.19.2, Playwright 1.65.1 ашиглан SauceDemo дээр ажиллуулсан үр дүн.
 
 | Хөтөч | Үндсэн тест | Орчны тест | Нийт |
 | --- | ---: | ---: | ---: |
@@ -52,7 +52,7 @@ npx playwright test tests/setup.spec.ts
 | WebKit | 3 passed | 1 passed | 4 passed |
 | **Нийт** | **9 passed** | **3 passed** | **12 passed** |
 
-Эцсийн ажиллуулалт **13.2 секунд** үргэлжилсэн. Хугацаа нь интернэт болон компьютероос хамаарч өөрчлөгдөнө. Git-д хавсаргасан HTML тайлан болон trace файлууд `evidence/passing-report/` дотор бий:
+Тестүүд **14.1 секундэд** дууссан. HTML тайлан болон 12 trace файл `evidence/passing-report/` дотор бий. Тайланг дараах командаар нээнэ.
 
 ```bash
 npm run report:evidence
